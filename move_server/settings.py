@@ -139,6 +139,7 @@ LOG_PATH = "/opt/log/move_webserver"
 if not os.path.exists(LOG_PATH):
     os.mkdir(LOG_PATH)
 
+# 日志格式配置
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
