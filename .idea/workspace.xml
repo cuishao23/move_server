@@ -11,16 +11,21 @@
       <path>
         <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
         <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="BRANCH:master" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="BRANCH:main" type="e8cecc67:BranchNodeDescriptor" />
       </path>
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1f98b6a7-0db2-46f6-bba0-473628fa7263" name="Default Changelist" comment="settings配置修改" />
+    <list default="true" id="1f98b6a7-0db2-46f6-bba0-473628fa7263" name="Default Changelist" comment="settings配置修改">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DjangoConsoleOptions" custom-start-script="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)">
+    <option name="myCustomStartScript" value="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -30,6 +35,12 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="PUSH_TAGS">
+      <GitPushTagMode>
+        <option name="argument" value="--tags" />
+        <option name="title" value="All" />
+      </GitPushTagMode>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1rkA0PYl5ra2FO7qdTLNuDdfaiC" />
@@ -43,6 +54,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/move_server/user" />
+    <property name="settings.editor.selected.configurable" value="org.jetbrains.plugins.github.ui.GithubSettingsConfigurable" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -115,6 +127,8 @@
       <workItem from="1619509542398" duration="521000" />
       <workItem from="1619510140446" duration="11391000" />
       <workItem from="1619575019493" duration="769000" />
+      <workItem from="1619576577520" duration="1115000" />
+      <workItem from="1619578313792" duration="2015000" />
     </task>
     <task id="LOCAL-00001" summary="settings配置修改">
       <created>1619575209315</created>
@@ -140,7 +154,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="master" />
+                        <option value="main" />
                       </list>
                     </value>
                   </entry>
@@ -163,6 +177,10 @@
     </state>
     <state x="458" y="182" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1440.815/-1920.-155.1920.1055@0.0.1440.815" timestamp="1619513703221" />
     <state x="458" y="201" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1440.900/-1920.-180.1920.1080@0.0.1440.900" timestamp="1619513014643" />
+    <state x="100" y="100" width="1240" height="700" key="DiffContextDialog" timestamp="1619579721115">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="100" y="100" width="1240" height="700" key="DiffContextDialog/0.0.1440.900/-1920.-180.1920.1080@0.0.1440.900" timestamp="1619579721115" />
     <state width="1398" height="245" key="GridCell.Tab.0.bottom" timestamp="1619524829085">
       <screen x="0" y="25" width="1440" height="790" />
     </state>
@@ -183,10 +201,15 @@
     </state>
     <state width="1398" height="245" key="GridCell.Tab.0.right/0.0.1440.900/-1920.-180.1920.1080@0.0.1440.900" timestamp="1619518004391" />
     <state width="1398" height="245" key="GridCell.Tab.0.right/0.25.1440.790/-1920.-155.1920.1055@0.25.1440.790" timestamp="1619524829084" />
-    <state x="320" y="187" key="Vcs.Push.Dialog.v2" timestamp="1619575284418">
+    <state x="173" y="0" key="SettingsEditor" timestamp="1619578653463">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="320" y="187" key="Vcs.Push.Dialog.v2/0.0.1440.900/-1920.-180.1920.1080@0.0.1440.900" timestamp="1619575284418" />
+    <state x="173" y="0" key="SettingsEditor/0.0.1440.900/-1920.-180.1920.1080@0.0.1440.900" timestamp="1619578653463" />
+    <state x="320" y="187" key="Vcs.Push.Dialog.v2" timestamp="1619580325266">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="320" y="187" key="Vcs.Push.Dialog.v2/0.0.1440.900/-1920.-155.1920.1055@0.0.1440.900" timestamp="1619580325266" />
+    <state x="320" y="187" key="Vcs.Push.Dialog.v2/0.0.1440.900/-1920.-180.1920.1080@0.0.1440.900" timestamp="1619580155894" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/move_server$__init__.coverage" NAME="__init__ Coverage Results" MODIFIED="1619517821723" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/move_server/utils" />
