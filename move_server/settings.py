@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
     'user'
 ]
 
@@ -174,4 +175,9 @@ LOGGING = {
             'propagate': False
         }
     }
+}
+
+# 异常处理 [rest framework]
+REST_FRAMEWORK = {
+    'EXCEPTION_HANDLER': 'move_server.utils.exception.exception_handler'
 }

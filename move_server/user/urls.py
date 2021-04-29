@@ -1,5 +1,7 @@
-from django.conf.urls import url, include
+from django.conf.urls import url
+from .views import *
 
 urlpatterns = [
-    # url('^move/user/', include("user.urls")),
+    url(r'^user/$', MoveUser.as_view())
 ]
+
