@@ -51,3 +51,18 @@
       }
     ]
   }
+
+  export const genderTypes = [
+    {
+      text: '性别',
+      value: 'all'
+    },
+    {
+      text: '男',
+      value: '1'
+    },
+    {
+      text: '女',
+      value: '2'
+    }
+  ];

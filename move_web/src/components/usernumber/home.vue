@@ -1,7 +1,20 @@
 <template>
   <div class="versionDiv">
+    <div class="usernumber_tab">
+      <input type="text" class="filter-text" v-model="address" placeholder="地区" onkeyup="value=value.replace(/[^\u4e00-\u9fa5]/g,'')"/>
+      <el-select v-model="genderType" value="" placeholder="性别" filterable>
+        <el-option
+          v-for="(item,index) in genderTypes"
+          :key="index"
+          :label="item.text"
+          :value="item.value">
+        </el-option>
+      </el-select>
+      <button class='search' @click="searchUserInfo()"></button>
+      <button class="normal-btn export" @click="onExport()">导出</button>
+    </div>
     <div>
-      <nms-pager-table :data="deviceList" :fields="deviceFields" :total-page="userTotalPage" v-model="curPage"/>
+      <nms-pager-table :data="deviceList" :fields="deviceFields" :total-page="userTotalPage" :biao-zhi="cage" v-model="curPage"/>
     </div>
   </div>
 </template>
@@ -9,7 +22,7 @@
 <script>
   import NmsPagerTable from "../../components/common/nms-pager-table";
   import api from '../../axios'
-  import {getUserInfoFields} from "../../assets/js/usernumber"
+  import {getUserInfoFields, genderTypes} from "../../assets/js/usernumber"
   import axios from 'axios'
 
 
@@ -25,12 +38,17 @@
         cage: 1,
         userTotalPage: 1,
         deviceList: [],
-        deviceFields: []
+        deviceFields: [],
+        address: '',
+        genderType: 'all',
+        genderTypes: genderTypes
       }
     },
     mounted() {
       api.getUserInfoList({params: {
-          newPageNum: 1
+          newPageNum: 1,
+          address: this.address,
+          genderType: this.genderType
         }
       }).then(res => {
         this.deviceList = res.data;
@@ -45,12 +63,32 @@
       curPage: function (newPageNum, oldPageNum) {
         this.cage = 1
         api.getUserInfoList({params: {
-            newPageNum: newPageNum
+            newPageNum: newPageNum,
+            address: this.address,
+            genderType: this.genderType
           }
         }).then(res => {
           this.deviceList = res.data;
           this.deviceFields = getUserInfoFields();
           this.userTotalPage = Math.ceil(res.total_num / this.perPage);
+        })
+        .catch((error) => {
+          console.log(error);
+        })
+      }
+    },
+    methods: {
+      searchUserInfo: function () {
+        api.getUserInfoList({params: {
+            newPageNum: 1,
+            address: this.address,
+            genderType: this.genderType
+          }
+        }).then(res => {
+          this.deviceList = res.data;
+          this.deviceFields = getUserInfoFields();
+          this.userTotalPage = Math.ceil(res.total_num / this.perPage);
+          this.cage = 2
         })
         .catch((error) => {
           console.log(error);
@@ -64,33 +102,8 @@
   .versionDiv {
     text-align: left;
   }
-  .searchDiv{
-    position: relative;
-    height: 33px;
-    margin-bottom: 14px;
-  }
-  .uploadBtn {
-    position: absolute;
-    right: 0;
-    top: 0;
-  }
-  .item-list {
-    color: #4e4e4e;
-    font-size: 0;
-    margin-left: 3px;
-    margin-bottom: 27px;
-  }
-  .item-list li {
-    font-size: 12px;
-    display: inline-block;
-    vertical-align: middle;
-  }
   .first-col {
     width: 87px;
-  }
-  .version-info {
-    padding-left: 30px;
-    padding-top: 30px;
   }
   .second-col {
     width: 319px;
@@ -102,21 +115,6 @@
   .el-input {
     width: 319px;
   }
-  /* .select-file {
-    display: block;
-    width: 30px;
-    height: 30px;
-    background: url(../assets/image/open_file.png);
-  } */
-  .without-first-col {
-    margin-left: 90px;
-    margin-bottom: 27px;
-    font-size: 0;
-  }
-  #start_upload {
-    margin-top: -7px;
-    margin-right: 15px;
-  }
   .first-col .note {
     font-size: 11px;
     color: #8b8b8b;
@@ -124,44 +122,12 @@
   .with-textarea .first-col {
     vertical-align: top;
   }
-  /* #select_users {
-    display: block;
-    width: 30px;
-    height: 30px;
-    background: url(../assets/image/btn-select.png);
-  } */
-  /* #add_ter_num {
-    display: block;
-    width: 30px;
-    height: 30px;
-    background: url(../assets/image/add.png);
-  } */
-  #ter_num_list {
-    margin-top: -7px;
+  .normal-btn {
+    float: right;
   }
-  .without-first-col li {
-    font-size: 12px;
-    display: inline-block;
-    vertical-align: middle;
+  .usernumber_tab {
+    padding-bottom: 5px;
   }
-  .ter-num {
-    margin-right: 6px;
-    margin-bottom: 10px;
-    font-size: 11px;
-    border: 1px solid #999;
-    padding: 6px 6px 6px 8px;
-    color: #4e4e4e;
-  }
-  /* .ter-num s {
-    position: relative;
-    top: 3px;
-    width: 13px;
-    height: 13px;
-    display: inline-block;
-    margin-left: 15px;
-    background: url(../assets/image/delete.png);
-    cursor: pointer;
-  } */
 </style>
 
 

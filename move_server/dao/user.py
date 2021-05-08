@@ -1,4 +1,5 @@
 import logging
+from django.db.models import Q
 from move_server.dao.mysql.user import *
 from move_server.utils.globalfun import get_time
 
@@ -16,14 +17,26 @@ def getPage(page):
 
     return start, end
     
-def get_user_info(page):
+def get_user_info(page, gender, address):
 
     # 获取查询页码
     start,end = getPage(page)
     logger.info("start:%s, end:%s"%(start,end))
 
-    result = MoveMember.objects.all()[start:end]
-    total_num = MoveMember.objects.all().count()
+    if gender == 'all':
+        if address == '':
+            result = MoveMember.objects.all()[start:end]
+            total_num = MoveMember.objects.all().count()
+        else:
+            result = MoveMember.objects.filter(Q(province__icontains=address)|Q(city__icontains=address)|Q(county__icontains=address))[start:end]
+            total_num = MoveMember.objects.filter(Q(province__icontains=address)|Q(city__icontains=address)|Q(county__icontains=address)).count()
+    else:
+        if address == '':
+            result = MoveMember.objects.filter(gender=gender)[start:end]
+            total_num = MoveMember.objects.filter(gender=gender).count()
+        else:
+            result = MoveMember.objects.filter(Q(province__icontains=address)|Q(city__icontains=address)|Q(county__icontains=address), gender=gender)[start:end]
+            total_num = MoveMember.objects.filter(Q(province__icontains=address)|Q(city__icontains=address)|Q(county__icontains=address), gender=gender).count()
 
     user_list = []
     for user in result:
