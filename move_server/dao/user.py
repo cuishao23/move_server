@@ -1,4 +1,5 @@
 import logging
+import pandas as pd
 from django.db.models import Q
 from move_server.dao.mysql.user import *
 from move_server.utils.globalfun import get_time
@@ -53,3 +54,48 @@ def get_user_info(page, gender, address):
                           'create_time': get_time(user.create_time)})
 
     return user_list, total_num
+
+
+# 导出数据
+def export_user_info_list(address, gender):
+    try:
+        user_list = get_user_info_list(address, gender)
+
+        df = pd.DataFrame(user_list)
+        df = df.set_index('id')
+        writer = pd.ExcelWriter(r'/opt/data/users.xlsx', engine='xlsxwriter')
+        df.to_excel(writer)
+        writer.close()
+        print('export ok！')
+    except Exception as e:
+        print(e)
+        logger.error(e)
+
+
+def get_user_info_list(address, gender):
+    if gender == 'all':
+        if address == '':
+            result = MoveMember.objects.all()
+        else:
+            result = MoveMember.objects.filter(Q(province__icontains=address)|Q(city__icontains=address)|Q(county__icontains=address))
+    else:
+        if address == '':
+            result = MoveMember.objects.filter(gender=gender)
+        else:
+            result = MoveMember.objects.filter(Q(province__icontains=address)|Q(city__icontains=address)|Q(county__icontains=address), gender=gender)
+    user_list = []
+    for user in result:
+        user_list.append({'id': user.id,
+                          'name': user.name,
+                          'id_type': user.id_type,
+                          'id_number': user.id_number,
+                          'birth': user.birth,
+                          'gender': user.gender,
+                          'province': user.province,
+                          'city': user.city,
+                          'county': user.county,
+                          'state': user.state,
+                          'status': user.status,
+                          'create_time': get_time(user.create_time)})
+
+    return user_list

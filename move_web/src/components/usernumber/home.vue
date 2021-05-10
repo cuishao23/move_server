@@ -23,7 +23,7 @@
   import NmsPagerTable from "../../components/common/nms-pager-table";
   import api from '../../axios'
   import {getUserInfoFields, genderTypes} from "../../assets/js/usernumber"
-  import axios from 'axios'
+  import {Upexcele}  from '../common/commonFunction'
 
 
   export default {
@@ -93,7 +93,17 @@
         .catch((error) => {
           console.log(error);
         })
-      }
+      },
+      onExport: function () {
+        api.getUserDownLoad({params: {
+          address: this.address,
+          genderType: this.genderType
+        }, responseType: 'blob'}).then(res => {
+          Upexcele(res, '用户实名认证表.xlsx')
+        }).catch(error => {
+          console.log(error)
+        });
+      },
     }
   }
 </script>

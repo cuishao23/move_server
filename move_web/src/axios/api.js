@@ -18,7 +18,11 @@ axios.interceptors.request.use((config) => {
 
 export default axios;
 
-// 查询未修复终端告警信息
+// 查询用户实名登记信息
 export const getUserInfoList = params => {
     return axios.get('/move/user', params).then(res => res.data)
+};
+// 导出用户实名登记信息
+export const getUserDownLoad = params => {
+  return axios.get('/move/download', params).then(res => res.data)
 };
