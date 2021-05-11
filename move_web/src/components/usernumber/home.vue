@@ -27,7 +27,7 @@
 
 
   export default {
-    name: "usernumber",
+    name: "usernumberhome",
     components: {NmsPagerTable},
     inject: ['reload'],
     data() {

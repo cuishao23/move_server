@@ -2,7 +2,13 @@
   <div>
     <ul id="mainMenu">
       <li class="level1 no-children">
-        <router-link :to="{name:'usernumber'}" @click.native="show = 'usernumber'">用户信息</router-link>
+        <router-link :to="{name:'usernumber'}" @click.native="show = 'usernumber'">身份信息</router-link>
+      </li>
+            <li class="level1 no-children">
+        <router-link :to="{name:'usermobile'}" @click.native="show = 'usermobile'">手机信息</router-link>
+      </li>
+      <li class="level1 no-children">
+        <router-link :to="{name:'userbasic'}" @click.native="show = 'userbasic'">基本信息</router-link>
       </li>
     </ul>
   </div>

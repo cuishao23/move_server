@@ -26,3 +26,11 @@ export const getUserInfoList = params => {
 export const getUserDownLoad = params => {
   return axios.get('/move/download', params).then(res => res.data)
 };
+// 查询用户号码信息
+export const getUserMobileInfoList = params => {
+  return axios.get('/move/mobile', params).then(res => res.data)
+};
+// 导出用户号码信息
+export const getUserMobileDownLoad = params => {
+return axios.get('/move/mobiledownload', params).then(res => res.data)
+};

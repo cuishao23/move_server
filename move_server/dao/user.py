@@ -17,7 +17,9 @@ def getPage(page):
     end = page * 10
 
     return start, end
-    
+
+
+# 用户身份信息接口
 def get_user_info(page, gender, address):
 
     # 获取查询页码
@@ -55,7 +57,6 @@ def get_user_info(page, gender, address):
 
     return user_list, total_num
 
-
 # 导出数据
 def export_user_info_list(address, gender):
     try:
@@ -70,7 +71,6 @@ def export_user_info_list(address, gender):
     except Exception as e:
         print(e)
         logger.error(e)
-
 
 def get_user_info_list(address, gender):
     if gender == 'all':
@@ -97,5 +97,49 @@ def get_user_info_list(address, gender):
                           'state': user.state,
                           'status': user.status,
                           'create_time': get_time(user.create_time)})
+
+    return user_list
+
+
+# 用户手机信息接口
+def get_mobile_user_info(page):
+
+    # 获取查询页码
+    start,end = getPage(page)
+    logger.info("start:%s, end:%s"%(start,end))
+
+    result = MoveMobileMember.objects.all()[start:end]
+    total_num = MoveMobileMember.objects.all().count()
+
+    user_list = []
+    for user in result:
+        user_list.append({'unionid': user.unionid,
+                          'mobile': user.mobile,
+                          'id_number': user.id_number})
+
+    return user_list, total_num
+
+def export_mobile_user_info_list():
+    try:
+        user_list = get_mobile_user_info_list()
+
+        df = pd.DataFrame(user_list)
+        df = df.set_index('id')
+        writer = pd.ExcelWriter(r'/opt/data/users.xlsx', engine='xlsxwriter')
+        df.to_excel(writer)
+        writer.close()
+        print('export ok！')
+    except Exception as e:
+        print(e)
+        logger.error(e)
+
+def get_mobile_user_info_list():
+    result = MoveMobileMember.objects.all()
+    user_list = []
+    for user in result:
+        user_list.append({'id': user.id,
+                          'unionid': user.unionid,
+                          'mobile': user.mobile,
+                          'id_number': user.id_number})
 
     return user_list

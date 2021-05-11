@@ -37,3 +37,25 @@ class DownloadUser(APIView):
         response['Content-Type'] = 'application/octet-stream'
         response['Content-Disposition'] = 'attachment;filename=users.xlsx'
         return response
+
+class MobileUser(APIView):
+    def get(self, request, *args, **kwargs):
+        page = request.GET.get('newPageNum')
+
+        user_list, user_total_num = user.get_mobile_user_info(page)
+        logger.info('[MoveUser] user_list:%s' % user_list)
+        logger.info('[MoveUser] user_total_num:%s' % user_total_num)
+
+        response = {'success': 1}
+        response['data'] = user_list
+        response['total_num'] = user_total_num
+        return Response(response)
+
+class DownloadMobileUser(APIView):
+    def get(self, request, *args, **kwargs):
+        user.export_mobile_user_info_list()
+        f = open('/opt/data/users.xlsx', 'rb')
+        response = FileResponse(f)
+        response['Content-Type'] = 'application/octet-stream'
+        response['Content-Disposition'] = 'attachment;filename=users.xlsx'
+        return response

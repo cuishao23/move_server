@@ -1,5 +1,5 @@
-/**
- * 用户表表格属性
+ /*
+ * 用户身份表表格属性
  * @param 
  * @returns {*[]}
  */
@@ -66,3 +66,25 @@
       value: '2'
     }
   ];
+
+ /*
+ * 用户手机表表格属性
+ * @param 
+ * @returns {*[]}
+ */
+ export function getUserMobileInfoFields() {
+  return [
+    {
+      prop: 'unionid',
+      label: 'unionid'
+    },
+    {
+      prop: 'mobile',
+      label: '手机号'
+    },
+    {
+      prop: 'id_number',
+      label: '证件号'
+    }
+  ]
+}
