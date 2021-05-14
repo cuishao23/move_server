@@ -3,8 +3,7 @@
     <el-col :span="6" class="logo-parent">
       <div class="logo">
         <div><img src="../../assets/image/move.png" width="113px" height="35px"/></div>
-        <div><img src="../../assets/image/header_cutline.png"><span id="fontTitle">每步用户数据中心</span></div>
-
+        <div><img src="../../assets/image/header_cutline.png"><span id="fontTitle">数字营销数据平台</span></div>
       </div>
     </el-col>
     <el-col :span="6">

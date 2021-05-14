@@ -29,6 +29,59 @@
             <span v-if="scope.row.status === 1">有效</span>
             <span v-else-if="scope.row.status === 2">删除</span>
           </div>
+          <div v-else-if="item.prop === 'app' && item.flag === 'app_type'">
+            <span v-if="scope.row.app == '1'">每步赛事</span>
+            <span v-else-if="scope.row.app == '12'">赛易云</span>
+            <span v-else-if="scope.row.app == '7'">迈麦体育产业</span>
+            <span v-else-if="scope.row.app == '10'">RunBike儿童平衡车</span>
+            <span v-else-if="scope.row.app == '8'">PTSA+</span>
+            <span v-else-if="scope.row.app == '6'">奔跑吧少东家</span>
+            <span v-else-if="scope.row.app == '3'">每步+</span>
+            <span v-else-if="scope.row.app == '2'">Campusrun跑步训练营</span>
+            <span v-else-if="scope.row.app == '4'">mpms</span>
+            <span v-else-if="scope.row.app == '101'">每步运动会H5</span>
+            <span v-else-if="scope.row.app == '16'">五星运动汇小程序</span>
+            <span v-else-if="scope.row.app == '18'">慕道无极</span>
+            <span v-else-if="scope.row.app == '17'">黄浦我来赛</span>
+            <span v-else-if="scope.row.app == '21'">体育锻炼达标赛</span>
+            <span v-else-if="scope.row.app == '11'">赛易云h5</span>
+            <span v-else-if="scope.row.app == '108'">上海市青少年体育协会</span>
+            <span v-else-if="scope.row.app == '109'">第三届市民运动会配送服务平台</span>
+            <span v-else-if="scope.row.app == '110'">嘉定体育</span>
+            <span v-else-if="scope.row.app == '111'">全嘉运动会</span>
+            <span v-else-if="scope.row.app == '112'">上海市武术世锦赛</span>
+            <span v-else-if="scope.row.app == '113'">Campusrun跑步训练营</span>
+            <span v-else-if="scope.row.app == '114'">松江健步走</span>
+            <span v-else-if="scope.row.app == '115'">虹口 谁是联赛王</span>
+            <span v-else-if="scope.row.app == '116'">汇体育</span>
+            <span v-else-if="scope.row.app == '117'">泳乐趣</span>
+            <span v-else-if="scope.row.app == '118'">黄浦区体育指导员</span>
+            <span v-else-if="scope.row.app == '119'">高校百英里</span>
+            <span v-else-if="scope.row.app == '19'">爱在每步</span>
+            <span v-else-if="scope.row.app == '20'">动驿动</span>
+            <span v-else-if="scope.row.app == '122'">精英挑战赛</span>
+            <span v-else-if="scope.row.app == '123'">嘉定云配送</span>
+            <span v-else-if="scope.row.app == '124'">上海市线上运动会</span>
+            <span v-else-if="scope.row.app == '125'">翔动宝</span>
+            <span v-else-if="scope.row.app == '126'">健康浦东行</span>
+            <span v-else-if="scope.row.app == '127'">健身地图</span>
+            <span v-else-if="scope.row.app == '128'">江湾体育场</span>
+            <span v-else-if="scope.row.app == '129'">华新镇</span>
+            <span v-else-if="scope.row.app == '130'">长宁小程序</span>
+            <span v-else-if="scope.row.app == '131'">上海市社体 (竞赛) 中心内部管理系统</span>
+            <span v-else-if="scope.row.app == '132'">普陀线上运动会</span>
+            <span v-else-if="scope.row.app == '133'">云动斜土</span>
+            <span v-else-if="scope.row.app == '134'">质在青浦</span>
+            <span v-else-if="scope.row.app == '135'">厦门线上运动会小程序</span>
+            <span v-else-if="scope.row.app == '136'">长宁区社区公共运动场</span>
+            <span v-else-if="scope.row.app == '137'">培训会员h5</span>
+            <span v-else-if="scope.row.app == '138'">日照体育小程序</span>
+            <span v-else-if="scope.row.app == '139'">崇明休闲体育</span>
+            <span v-else-if="scope.row.app == '140'">圣步</span>
+            <span v-else-if="scope.row.app == '141'">漂移赛事服务系统</span>
+            <span v-else-if="scope.row.app == '142'">健步赛事服务系统</span>
+            <span v-else-if="scope.row.app == '143'">兰菁智慧赛事服务系统</span>
+          </div>
           <div v-else>
             <span v-if="scope.row[item.prop] == null">---</span>
             <span v-else>{{ scope.row[item.prop] }}</span>
