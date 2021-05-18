@@ -33,7 +33,7 @@
     data() {
       return {
         // 表格每页显示数量
-        perPage: 10,
+        perPage: 15,
         curPage: 1,
         cage: 1,
         userTotalPage: 1,

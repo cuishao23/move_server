@@ -14,8 +14,8 @@ def getPage(page):
     else:
         page = int(page)
 
-    start = (page - 1) * 10
-    end = page * 10
+    start = (page - 1) * 15
+    end = page * 15
 
     return start, end
 
@@ -203,7 +203,7 @@ def get_basic_user_info(page, gender, address, appType):
                             LEFT JOIN move_user_info ON move_user.id = move_user_info.uid
                     LIMIT %s,%s
                 '''
-                cursor.execute(sql1, [start, 10])
+                cursor.execute(sql1, [start, 15])
                 result = cursor.fetchall()
 
                 # 总数量
@@ -263,7 +263,7 @@ def get_basic_user_info(page, gender, address, appType):
                             move_user_info.province = %s
                     LIMIT %s,%s
                 '''
-                cursor.execute(sql1, [address, start, 10])
+                cursor.execute(sql1, [address, start, 15])
                 result = cursor.fetchall()
 
                 # 总数量
@@ -327,7 +327,7 @@ def get_basic_user_info(page, gender, address, appType):
                             move_user_channel.app = %s
                     LIMIT %s,%s
                 '''
-                cursor.execute(sql1, [appType, start, 10])
+                cursor.execute(sql1, [appType, start, 15])
                 result = cursor.fetchall()
 
                 # 总数量
@@ -390,7 +390,7 @@ def get_basic_user_info(page, gender, address, appType):
                             move_user_channel.app = %s and move_user_info.province = %s
                     LIMIT %s,%s
                 '''
-                cursor.execute(sql1, [appType, address, start, 10])
+                cursor.execute(sql1, [appType, address, start, 15])
                 result = cursor.fetchall()
 
                 # 总数量
@@ -455,7 +455,7 @@ def get_basic_user_info(page, gender, address, appType):
                             move_user_info.gender = %s
                     LIMIT %s,%s
                 '''
-                cursor.execute(sql1, [gender, start, 10])
+                cursor.execute(sql1, [gender, start, 15])
                 result = cursor.fetchall()
 
                 # 总数量
@@ -518,7 +518,7 @@ def get_basic_user_info(page, gender, address, appType):
                             move_user_info.gender = %s and move_user_info.province = %s
                     LIMIT %s,%s
                 '''
-                cursor.execute(sql1, [gender, address, start, 10])
+                cursor.execute(sql1, [gender, address, start, 15])
                 result = cursor.fetchall()
 
                 # 总数量
@@ -582,7 +582,7 @@ def get_basic_user_info(page, gender, address, appType):
                             move_user_info.gender = %s and move_user_channel.app = %s
                     LIMIT %s,%s
                 '''
-                cursor.execute(sql1, [gender, appType, start, 10])
+                cursor.execute(sql1, [gender, appType, start, 15])
                 result = cursor.fetchall()
 
                 # 总数量
@@ -645,7 +645,7 @@ def get_basic_user_info(page, gender, address, appType):
                             move_user_info.gender = %s and move_user_channel.app = %s and move_user_info.province = %s
                     LIMIT %s,%s
                 '''
-                cursor.execute(sql1, [gender, appType, address, start, 10])
+                cursor.execute(sql1, [gender, appType, address, start, 15])
                 result = cursor.fetchall()
 
                 # 总数量

@@ -303,7 +303,7 @@
       perPage: {
         type: Number,
         default: function () {
-          return 10
+          return 15
         }
       },
       pager: {
