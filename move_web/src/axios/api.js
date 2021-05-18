@@ -42,3 +42,7 @@ export const getUserBasicInfoList = params => {
 export const getUserBasicDownLoad = params => {
   return axios.get('/move/basicdownload', params).then(res => res.data)
 };
+// 用户基本信息总页数
+export const getTotalPageNum = params => {
+  return axios.get('/move/totalpagenum', params).then(res => res.data)
+};

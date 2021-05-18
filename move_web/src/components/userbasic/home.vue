@@ -45,7 +45,7 @@
         perPage: 15,
         curPage: 1,
         cage: 1,
-        userTotalPage: 1,
+        userTotalPage: '99+',
         userBasicList: [],
         userBasicFields: [],
         address: '',
@@ -67,13 +67,13 @@
       }).then(res => {
         this.userBasicList = res.data;
         this.userBasicFields = getUserBasicFields();
-        this.userTotalPage = Math.ceil(res.total_num / this.perPage);
         document.getElementById("TipShow").style.display = "none";
         document.getElementById("DataShow").style.display = "block";
       })
       .catch((error) => {
         console.log(error);
       })
+      this.getTotalPagenum()
     },
     watch: {
       curPage: function (newPageNum, oldPageNum) {
@@ -89,7 +89,6 @@
         }).then(res => {
           this.userBasicList = res.data;
           this.userBasicFields = getUserBasicFields();
-          this.userTotalPage = Math.ceil(res.total_num / this.perPage);
           document.getElementById("TipShow").style.display = "none";
           document.getElementById("DataShow").style.display = "block";
         })
@@ -111,10 +110,10 @@
         }).then(res => {
           this.userBasicList = res.data;
           this.userBasicFields = getUserBasicFields();
-          this.userTotalPage = Math.ceil(res.total_num / this.perPage);
           this.cage = 2
           document.getElementById("TipShow").style.display = "none";
           document.getElementById("DataShow").style.display = "block";
+          this.getTotalPagenum()
         })
         .catch((error) => {
           console.log(error);
@@ -131,6 +130,19 @@
           console.log(error)
         });
       },
+      getTotalPagenum: function () {
+        api.getTotalPageNum({params: {
+            address: this.address,
+            genderType: this.genderType,
+            appType: this.appType
+          }
+        }).then(res => {
+          this.userTotalPage = Math.ceil(res.total_num / this.perPage)
+        })
+        .catch((error) => {
+          console.log(error);
+        })
+      }
     }
   }
 </script>

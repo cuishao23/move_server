@@ -205,16 +205,6 @@ def get_basic_user_info(page, gender, address, appType):
                 '''
                 cursor.execute(sql1, [start, 15])
                 result = cursor.fetchall()
-
-                # 总数量
-                sql2 = '''
-                    select a.dd-c.ff+b.ee from 
-                        (select count(unionid) dd from move_user ) a,
-                        (select count(unionid) ee from move_user_channel) b,
-                        (select count(distinct unionid) ff from move_user_channel) c
-                '''
-                cursor.execute(sql2)
-                num = cursor.fetchone()
             else:
                 sql1 = '''
                     SELECT
@@ -265,19 +255,6 @@ def get_basic_user_info(page, gender, address, appType):
                 '''
                 cursor.execute(sql1, [address, start, 15])
                 result = cursor.fetchall()
-
-                # 总数量
-                sql2 = '''
-                    SELECT
-                            count(1)
-                    FROM
-                            move_user
-                            left JOIN move_user_channel ON move_user.unionid = move_user_channel.unionid
-                            left JOIN move_user_info ON move_user.id = move_user_info.uid
-                    WHERE   move_user_info.province = %s
-                '''
-                cursor.execute(sql2, [address,])
-                num = cursor.fetchone()
         else:
             if address == '':
                 sql1 = '''
@@ -329,19 +306,6 @@ def get_basic_user_info(page, gender, address, appType):
                 '''
                 cursor.execute(sql1, [appType, start, 15])
                 result = cursor.fetchall()
-
-                # 总数量
-                sql2 = '''
-                    SELECT
-                            count(1)
-                    FROM
-                            move_user
-                            left JOIN move_user_channel ON move_user.unionid = move_user_channel.unionid
-                            left JOIN move_user_info ON move_user.id = move_user_info.uid
-                    WHERE   move_user_channel.app = %s
-                '''
-                cursor.execute(sql2, [appType,])
-                num = cursor.fetchone()
             else:
                 sql1 = '''
                     SELECT
@@ -392,19 +356,6 @@ def get_basic_user_info(page, gender, address, appType):
                 '''
                 cursor.execute(sql1, [appType, address, start, 15])
                 result = cursor.fetchall()
-
-                # 总数量
-                sql2 = '''
-                    SELECT
-                            count(1)
-                    FROM
-                            move_user
-                            left JOIN move_user_channel ON move_user.unionid = move_user_channel.unionid
-                            left JOIN move_user_info ON move_user.id = move_user_info.uid
-                    WHERE   move_user_channel.app = %s and move_user_info.province = %s
-                '''
-                cursor.execute(sql2, [appType, address])
-                num = cursor.fetchone()
     else:
         if appType == 'all':
             if address == '':
@@ -457,19 +408,6 @@ def get_basic_user_info(page, gender, address, appType):
                 '''
                 cursor.execute(sql1, [gender, start, 15])
                 result = cursor.fetchall()
-
-                # 总数量
-                sql2 = '''
-                    SELECT
-                            count(1)
-                    FROM
-                            move_user
-                            left JOIN move_user_channel ON move_user.unionid = move_user_channel.unionid
-                            left JOIN move_user_info ON move_user.id = move_user_info.uid
-                    WHERE   move_user_info.gender = %s
-                '''
-                cursor.execute(sql2, [gender,])
-                num = cursor.fetchone()
             else:
                 sql1 = '''
                     SELECT
@@ -520,19 +458,6 @@ def get_basic_user_info(page, gender, address, appType):
                 '''
                 cursor.execute(sql1, [gender, address, start, 15])
                 result = cursor.fetchall()
-
-                # 总数量
-                sql2 = '''
-                    SELECT
-                            count(1)
-                    FROM
-                            move_user
-                            left JOIN move_user_channel ON move_user.unionid = move_user_channel.unionid
-                            left JOIN move_user_info ON move_user.id = move_user_info.uid
-                    WHERE   move_user_info.gender = %s and move_user_info.province = %s
-                '''
-                cursor.execute(sql2, [gender, address])
-                num = cursor.fetchone()
         else:
             if address == '':
                 sql1 = '''
@@ -584,19 +509,6 @@ def get_basic_user_info(page, gender, address, appType):
                 '''
                 cursor.execute(sql1, [gender, appType, start, 15])
                 result = cursor.fetchall()
-
-                # 总数量
-                sql2 = '''
-                    SELECT
-                            count(1)
-                    FROM
-                            move_user
-                            left JOIN move_user_channel ON move_user.unionid = move_user_channel.unionid
-                            left JOIN move_user_info ON move_user.id = move_user_info.uid
-                    WHERE   move_user_info.gender = %s and move_user_channel.app = %s
-                '''
-                cursor.execute(sql2, [gender, appType])
-                num = cursor.fetchone()
             else:
                 sql1 = '''
                     SELECT
@@ -648,23 +560,6 @@ def get_basic_user_info(page, gender, address, appType):
                 cursor.execute(sql1, [gender, appType, address, start, 15])
                 result = cursor.fetchall()
 
-                # 总数量
-                sql2 = '''
-                    SELECT
-                            count(1)
-                    FROM
-                            move_user
-                            left JOIN move_user_channel ON move_user.unionid = move_user_channel.unionid
-                            left JOIN move_user_info ON move_user.id = move_user_info.uid
-                    WHERE   move_user_info.gender = %s and move_user_channel.app = %s and move_user_info.province = %s
-                '''
-                cursor.execute(sql2, [gender, appType, address])
-                num = cursor.fetchone()
-
-    total_num = 0
-    if num:
-        total_num = num[0]
-
     user_list = []
     for info in result:
         user_list.append({'name': info[0], 'mobile': info[1], 'create_time': info[2],
@@ -679,7 +574,7 @@ def get_basic_user_info(page, gender, address, appType):
                             'appid': info[32], 'login_type': info[33], 'login_id': info[34],
                             'district': info[35], 'street': info[36]})
 
-    return user_list, total_num
+    return user_list
 
 # 导出数据
 def export_basic_user_info_list(address, gender, appType):
@@ -1137,3 +1032,119 @@ def get_basic_user_info_list(address, gender, appType):
                             'district': info[35], 'street': info[36]})
 
     return user_list
+
+def get_total_page_num(gender, address, appType):
+    cursor = connection.cursor()
+    if gender == 'all':
+        if appType == 'all':
+            if address == '':
+                # 总数量
+                sql2 = '''
+                    select a.dd-c.ff+b.ee from 
+                        (select count(unionid) dd from move_user ) a,
+                        (select count(unionid) ee from move_user_channel) b,
+                        (select count(distinct unionid) ff from move_user_channel) c
+                '''
+                cursor.execute(sql2)
+                num = cursor.fetchone()
+            else:
+                # 总数量
+                sql2 = '''
+                    SELECT
+                            count(1)
+                    FROM
+                            move_user
+                            left JOIN move_user_channel ON move_user.unionid = move_user_channel.unionid
+                            left JOIN move_user_info ON move_user.id = move_user_info.uid
+                    WHERE   move_user_info.province = %s
+                '''
+                cursor.execute(sql2, [address,])
+                num = cursor.fetchone()
+        else:
+            if address == '':
+                # 总数量
+                sql2 = '''
+                    SELECT
+                            count(1)
+                    FROM
+                            move_user
+                            left JOIN move_user_channel ON move_user.unionid = move_user_channel.unionid
+                            left JOIN move_user_info ON move_user.id = move_user_info.uid
+                    WHERE   move_user_channel.app = %s
+                '''
+                cursor.execute(sql2, [appType,])
+                num = cursor.fetchone()
+            else:
+                # 总数量
+                sql2 = '''
+                    SELECT
+                            count(1)
+                    FROM
+                            move_user
+                            left JOIN move_user_channel ON move_user.unionid = move_user_channel.unionid
+                            left JOIN move_user_info ON move_user.id = move_user_info.uid
+                    WHERE   move_user_channel.app = %s and move_user_info.province = %s
+                '''
+                cursor.execute(sql2, [appType, address])
+                num = cursor.fetchone()
+    else:
+        if appType == 'all':
+            if address == '':
+                # 总数量
+                sql2 = '''
+                    SELECT
+                            count(1)
+                    FROM
+                            move_user
+                            left JOIN move_user_channel ON move_user.unionid = move_user_channel.unionid
+                            left JOIN move_user_info ON move_user.id = move_user_info.uid
+                    WHERE   move_user_info.gender = %s
+                '''
+                cursor.execute(sql2, [gender,])
+                num = cursor.fetchone()
+            else:
+                # 总数量
+                sql2 = '''
+                    SELECT
+                            count(1)
+                    FROM
+                            move_user
+                            left JOIN move_user_channel ON move_user.unionid = move_user_channel.unionid
+                            left JOIN move_user_info ON move_user.id = move_user_info.uid
+                    WHERE   move_user_info.gender = %s and move_user_info.province = %s
+                '''
+                cursor.execute(sql2, [gender, address])
+                num = cursor.fetchone()
+        else:
+            if address == '':
+                # 总数量
+                sql2 = '''
+                    SELECT
+                            count(1)
+                    FROM
+                            move_user
+                            left JOIN move_user_channel ON move_user.unionid = move_user_channel.unionid
+                            left JOIN move_user_info ON move_user.id = move_user_info.uid
+                    WHERE   move_user_info.gender = %s and move_user_channel.app = %s
+                '''
+                cursor.execute(sql2, [gender, appType])
+                num = cursor.fetchone()
+            else:
+                # 总数量
+                sql2 = '''
+                    SELECT
+                            count(1)
+                    FROM
+                            move_user
+                            left JOIN move_user_channel ON move_user.unionid = move_user_channel.unionid
+                            left JOIN move_user_info ON move_user.id = move_user_info.uid
+                    WHERE   move_user_info.gender = %s and move_user_channel.app = %s and move_user_info.province = %s
+                '''
+                cursor.execute(sql2, [gender, appType, address])
+                num = cursor.fetchone()
+
+    total_num = 0
+    if num:
+        total_num = num[0]
+
+    return total_num

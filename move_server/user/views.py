@@ -69,17 +69,12 @@ class BasicUser(APIView):
         logger.info('[BasicUser] address:%s' % address)
         logger.info('[BasicUser] gender:%s' % gender)
         logger.info('[BasicUser] appType:%s' % appType)
-        print(address)
-        print(gender)
-        print(appType)
-        
-        user_list, user_total_num = user.get_basic_user_info(page, gender, address, appType)
+
+        user_list = user.get_basic_user_info(page, gender, address, appType)
         logger.info('[BasicUser] user_list:%s' % user_list)
-        logger.info('[BasicUser] user_total_num:%s' % user_total_num)
 
         response = {'success': 1}
         response['data'] = user_list
-        response['total_num'] = user_total_num
         return Response(response)
 
 class DownloadBasicUser(APIView):
@@ -97,3 +92,19 @@ class DownloadBasicUser(APIView):
         response['Content-Type'] = 'application/octet-stream'
         response['Content-Disposition'] = 'attachment;filename=users.xlsx'
         return response
+
+class TotalPageNum(APIView):
+    def get(self, request, *args, **kwargs):
+        address = request.GET.get('address')
+        gender = request.GET.get('genderType')
+        appType = request.GET.get('appType')
+        logger.info('[TotalPageNum] address:%s' % address)
+        logger.info('[TotalPageNum] gender:%s' % gender)
+        logger.info('[TotalPageNum] appType:%s' % appType)
+
+        user_total_num = user.get_total_page_num(gender, address, appType)
+        logger.info('[TotalPageNum] user_total_num:%s' % user_total_num)
+
+        response = {'success': 1}
+        response['total_num'] = user_total_num
+        return Response(response)
