@@ -14,6 +14,23 @@ axios.interceptors.request.use((config) => {
   config.headers['X-CSRFToken'] = cookie.parse(document.cookie).csrftoken;
   return config
 });
+axios.interceptors.response.use(
+  response => {
+    console.log(response)
+    if (response.data.success === 0) {
+      switch (response.data.status) {
+        case 401:
+          // 跳转到登陆页面
+          console.log(document.location)
+          document.location = document.location.origin + '/#login'
+      }
+    }
+    return response
+  },
+  error => {
+    console.log('error='+error)
+  }
+);
 
 
 export default axios;
@@ -45,4 +62,12 @@ export const getUserBasicDownLoad = params => {
 // 用户基本信息总页数
 export const getTotalPageNum = params => {
   return axios.get('/move/totalpagenum', params).then(res => res.data)
+};
+// 登陆
+export const postLoginInfo = params => {
+  return axios.post('/move/login', params).then(res => res.data)
+};
+// 退出登陆
+export const postLoginOutInfo = params => {
+  return axios.post('/move/loginout', params).then(res => res.data)
 };

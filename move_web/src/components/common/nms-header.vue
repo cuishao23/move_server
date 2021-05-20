@@ -46,6 +46,7 @@
 <script>
   import ElRow from 'element-ui/packages/row/src/row'
   import NmsDialog from '../../components/common/nms-dialog'
+  import api from '../../axios'
   export default {
     components: {ElRow, NmsDialog},
     name: 'nms-header',
@@ -74,11 +75,22 @@
         this.$refs.logout.open()
       },
       confirmLogout: function () {
+        console.log('confirmLogout')
+        api.postLoginOutInfo().then(res => {
+          console.log(res)
+          if (res.success == 1) {
+              this.$router.push({
+                name: "logout"})
+          }
+        })
+        .catch((error) => {
+            console.log(error);
+        })
         console.log('logout')
-        this.$refs.logout.close()
-
+        console.log(window.location)
         // 跳转到登录页
-        // window.location = '/portalCore/login'
+        window.location = '/login'
+        // this.$refs.logout.close()
       },
       cancelLogout: function () {
         console.log('cancel logout')

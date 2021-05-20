@@ -16,6 +16,9 @@ import UserMobileHome from '../components/usermobile/home'
 import UserBasic from '../pages/userbasic'
 import UserBasicHome from '../components/userbasic/home'
 
+// 登陆
+import Login from '../pages/login'
+
 Vue.use(Router)
 
 
@@ -24,6 +27,11 @@ export default new Router({
     {
       path: '/',
       redirect: '/usernumber'
+    },
+    {
+      path: '/login',
+      name: 'login',
+      component: Login
     },
     {
       path: '/',
