@@ -85,7 +85,7 @@
 
   /*头部样式*/
   .mainHeader {
-    width: 100vw;
+    width: 100%;
     height: 98px;
     background-color: #373d41;
     position: fixed;

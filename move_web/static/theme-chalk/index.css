@@ -3670,9 +3670,9 @@ i.el-icon-caret-right:before {
     background: #000
 }
 
-.el-popup-parent--hidden {
+/* .el-popup-parent--hidden {
     overflow: hidden
-}
+} */
 
 .el-message-box {
     display: inline-block;

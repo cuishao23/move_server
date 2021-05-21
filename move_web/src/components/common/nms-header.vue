@@ -79,18 +79,15 @@
         api.postLoginOutInfo().then(res => {
           if (res.success == 1) {
               this.$router.push({name: "login"})
+              // window.location = '#/login'
               // 清除cookie
               this.setCookie("username", "", -1)
+              this.user = '未登陆用户'
           }
         })
         .catch((error) => {
             console.log(error);
         })
-        console.log('logout')
-        console.log(window.location)
-        // 跳转到登录页
-        window.location = '/login'
-        // this.$refs.logout.close()
       },
       cancelLogout: function () {
         console.log('cancel logout')

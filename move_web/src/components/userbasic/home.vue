@@ -45,7 +45,7 @@
         perPage: 15,
         curPage: 1,
         cage: 1,
-        userTotalPage: '99+',
+        userTotalPage: 999,
         userBasicList: [],
         userBasicFields: [],
         address: '',

@@ -367,7 +367,7 @@ export const appTypes = [
     },
     {
       prop: 'extappid',
-      label: '第三方推广应用appid'
+      label: 'appid'
     },
     {
       prop: 'dist',
@@ -423,7 +423,7 @@ export const appTypes = [
     },
     {
       prop: 'phone_token',
-      label: '手机登陆token'
+      label: '手机token'
     },
     {
       prop: 'token_time',
