@@ -2,7 +2,7 @@
   <div id="app">
     <div class="mainHeader"> <!--网站头部-->
       <div id="headerContiner">
-        <nms-header :user='user' :show="true"></nms-header>
+        <nms-header :show="true"></nms-header>
       </div>
     </div>
     <router-view v-if="isRouterAlive"></router-view>
@@ -23,7 +23,6 @@
     },
     data () {
       return {
-        user: 'administrator',
         isRouterAlive: true
       }
     },

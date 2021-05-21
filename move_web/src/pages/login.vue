@@ -80,9 +80,7 @@
                 var d = new Date();
                 d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
                 var expires = "expires=" + d.toUTCString();
-                console.info(cname + "=" + cvalue + "; " + expires);
                 document.cookie = cname + "=" + cvalue + "; " + expires;
-                console.info(document.cookie);
               },
             async submit() {
                 if (this.username === '') {
@@ -102,8 +100,10 @@
                 this.login_data['passwd'] = this.passwd
                 api.postLoginInfo(this.login_data).then(res => {
                   if (res.success == 1) {
-                      this.setCookie('name',res.username,1);
-                      this.$router.push({name: "usernumber"})
+                      this.setCookie('username',res.username,1);
+                      console.log(document.location.origin)
+                      document.location = document.location.origin
+                    //   this.$router.push({name: "usernumber"})
                   } else {
                       this.err_msg = "用户名/密码错误"
                   }

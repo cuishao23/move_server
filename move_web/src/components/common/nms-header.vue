@@ -54,13 +54,14 @@
       return {
         brand: 1,
         version: '1.0.0',
-        year: 2000
+        year: 2000,
+        user: '未登陆用户'
       }
     },
-    props: {
-      user: String
-    },
     mounted: function() {
+      if (this.getCookie('username')) {
+        this.user = this.getCookie('username')
+      }
       let date = new Date()
       this.year = date.getFullYear()
     },
@@ -75,12 +76,11 @@
         this.$refs.logout.open()
       },
       confirmLogout: function () {
-        console.log('confirmLogout')
         api.postLoginOutInfo().then(res => {
-          console.log(res)
           if (res.success == 1) {
-              this.$router.push({
-                name: "logout"})
+              this.$router.push({name: "login"})
+              // 清除cookie
+              this.setCookie("username", "", -1)
           }
         })
         .catch((error) => {
@@ -95,7 +95,27 @@
       cancelLogout: function () {
         console.log('cancel logout')
         this.$refs.logout.close()
-      }
+      },
+      //获取cookie
+      getCookie: function (cname) {
+        var name = cname + "=";
+        var ca = document.cookie.split(';');
+        for (var i = 0; i < ca.length; i++) {
+          var c = ca[i];
+          while (c.charAt(0) == ' ') c = c.substring(1);
+          if (c.indexOf(name) != -1){
+            return c.substring(name.length, c.length);
+          }
+        }
+        return "";
+      },
+      // 设置cookie
+      setCookie: function (cname, cvalue, exdays) {
+        var d = new Date();
+        d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+        var expires = "expires=" + d.toUTCString();
+        document.cookie = cname + "=" + cvalue + "; " + expires;
+      }
     }
   }
 </script>
