@@ -22,6 +22,7 @@
       <button class="normal-btn export" @click="onExport()">导出</button>
     </div>
     <span class="res-tip-show" id="TipShow">数据查询中...</span>
+    <span class="res-tip-show" id="NoDataShow">未找到匹配数据</span>
     <div id="DataShow">
       <nms-pager-table :data="userBasicList" :fields="userBasicFields" :total-page="userTotalPage" :biao-zhi="cage" v-model="curPage"/>
     </div>
@@ -57,6 +58,7 @@
     },
     mounted() {
       document.getElementById("TipShow").style.display = "block";
+      document.getElementById("NoDataShow").style.display = "none";
       document.getElementById("DataShow").style.display = "none";
       api.getUserBasicInfoList({params: {
           newPageNum: 1,
@@ -67,6 +69,7 @@
       }).then(res => {
         this.userBasicList = res.data;
         this.userBasicFields = getUserBasicFields();
+        document.getElementById("NoDataShow").style.display = "none";
         document.getElementById("TipShow").style.display = "none";
         document.getElementById("DataShow").style.display = "block";
       })
@@ -77,6 +80,7 @@
     },
     watch: {
       curPage: function (newPageNum, oldPageNum) {
+        document.getElementById("NoDataShow").style.display = "none";
         document.getElementById("TipShow").style.display = "block";
         document.getElementById("DataShow").style.display = "none";
         this.cage = 1
@@ -89,6 +93,7 @@
         }).then(res => {
           this.userBasicList = res.data;
           this.userBasicFields = getUserBasicFields();
+          document.getElementById("NoDataShow").style.display = "none";
           document.getElementById("TipShow").style.display = "none";
           document.getElementById("DataShow").style.display = "block";
         })
@@ -101,6 +106,7 @@
       searchUserInfo: function () {
         document.getElementById("TipShow").style.display = "block";
         document.getElementById("DataShow").style.display = "none";
+        document.getElementById("NoDataShow").style.display = "none";
         api.getUserBasicInfoList({params: {
             newPageNum: 1,
             address: this.address,
@@ -111,8 +117,16 @@
           this.userBasicList = res.data;
           this.userBasicFields = getUserBasicFields();
           this.cage = 2
-          document.getElementById("TipShow").style.display = "none";
-          document.getElementById("DataShow").style.display = "block";
+          //no according results
+          if (Object.entries(res.data).length==0){
+            document.getElementById("TipShow").style.display = "none";
+            document.getElementById("DataShow").style.display = "none";
+            document.getElementById("NoDataShow").style.display = "block";
+          }else{
+            document.getElementById("TipShow").style.display = "none";
+            document.getElementById("DataShow").style.display = "block";
+            document.getElementById("NoDataShow").style.display = "none";
+          }
           this.getTotalPagenum()
         })
         .catch((error) => {

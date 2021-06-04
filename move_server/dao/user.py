@@ -29,7 +29,8 @@ def get_user_info(page, gender, address):
 
     if gender == 'all':
         if address == '':
-            result = MoveMember.objects.all()[start:end]
+            result = list(MoveMember.objects.filter(id__gt=start, id__lt=end+1))
+            #result = MoveMember.objects.all()[start:end]
             total_num = MoveMember.objects.all().count()
         else:
             result = MoveMember.objects.filter(Q(province__icontains=address)|Q(city__icontains=address)|Q(county__icontains=address))[start:end]
@@ -203,6 +204,7 @@ def get_basic_user_info(page, gender, address, appType):
                             LEFT JOIN move_user_info ON move_user.id = move_user_info.uid
                     LIMIT %s,%s
                 '''
+                
                 cursor.execute(sql1, [start, 15])
                 result = cursor.fetchall()
             else:

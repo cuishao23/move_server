@@ -13,7 +13,8 @@
       <button class='search' @click="searchUserInfo()"></button>
       <button class="normal-btn export" @click="onExport()">导出</button>
     </div>
-    <div>
+    <span class="res-tip-show" id="NoDataShow">未找到匹配数据</span>
+    <div id='DataShow'>
       <nms-pager-table :data="deviceList" :fields="deviceFields" :total-page="userTotalPage" :biao-zhi="cage" v-model="curPage"/>
     </div>
   </div>
@@ -54,6 +55,8 @@
         this.deviceList = res.data;
         this.deviceFields = getUserInfoFields();
         this.userTotalPage = Math.ceil(res.total_num / this.perPage);
+        document.getElementById("NoDataShow").style.display = "none";
+        document.getElementById("DataShow").style.display = "block";
       })
       .catch((error) => {
         console.log(error);
@@ -71,6 +74,8 @@
           this.deviceList = res.data;
           this.deviceFields = getUserInfoFields();
           this.userTotalPage = Math.ceil(res.total_num / this.perPage);
+          document.getElementById("NoDataShow").style.display = "none";
+          document.getElementById("DataShow").style.display = "block";
         })
         .catch((error) => {
           console.log(error);
@@ -89,6 +94,14 @@
           this.deviceFields = getUserInfoFields();
           this.userTotalPage = Math.ceil(res.total_num / this.perPage);
           this.cage = 2
+          //no according results
+          if (Object.entries(res.data).length==0){
+            document.getElementById("DataShow").style.display = "none";
+            document.getElementById("NoDataShow").style.display = "block";
+          }else{
+            document.getElementById("DataShow").style.display = "block";
+            document.getElementById("NoDataShow").style.display = "none";
+          }
         })
         .catch((error) => {
           console.log(error);
