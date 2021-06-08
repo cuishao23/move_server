@@ -151,6 +151,12 @@
   .usernumber_tab {
     padding-bottom: 5px;
   }
+  .res-tip-show{
+    padding-top: 100px;
+    text-align: center;
+    height: 320px;
+    display: none;
+  }
 </style>
 
 

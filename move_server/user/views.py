@@ -12,10 +12,10 @@ logger = logging.getLogger('nms.' + __name__)
 
 class MoveUser(APIView):
     def get(self, request, *args, **kwargs):
-        # login_token = cache.get('login_token', None)
-        # if login_token is None:
-        #     response = {'success': 0, 'message':'未登陆用户','status': 401}
-        #     return Response(response)
+        login_token = cache.get('login_token', None)
+        if login_token is None:
+            response = {'success': 0, 'message':'未登陆用户','status': 401}
+            return Response(response)
 
         page = request.GET.get('newPageNum')
         address = request.GET.get('address')
@@ -48,10 +48,10 @@ class DownloadUser(APIView):
 
 class MobileUser(APIView):
     def get(self, request, *args, **kwargs):
-    #     login_token = cache.get('login_token', None)
-    #     if login_token is None:
-    #         response = {'success': 0, 'message':'未登陆用户','status': 401}
-    #         return Response(response)
+        login_token = cache.get('login_token', None)
+        if login_token is None:
+            response = {'success': 0, 'message':'未登陆用户','status': 401}
+            return Response(response)
 
         page = request.GET.get('newPageNum')
 
@@ -75,10 +75,10 @@ class DownloadMobileUser(APIView):
 
 class BasicUser(APIView):
     def get(self, request, *args, **kwargs):
-    #     login_token = cache.get('login_token', None)
-    #     if login_token is None:
-    #         response = {'success': 0, 'message':'未登陆用户','status': 401}
-    #         return Response(response)
+        login_token = cache.get('login_token', None)
+        if login_token is None:
+            response = {'success': 0, 'message':'未登陆用户','status': 401}
+            return Response(response)
 
         page = request.GET.get('newPageNum')
         address = request.GET.get('address')
