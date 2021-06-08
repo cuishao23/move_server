@@ -10,6 +10,9 @@
       <li class="level1 no-children">
         <router-link :to="{name:'userbasic'}" @click.native="show = 'userbasic'">基本信息</router-link>
       </li>
+      <li class="level1 no-children">
+        <router-link :to="{name:'bi'}" @click.native="show = 'bi'">BI报表</router-link>
+      </li>
     </ul>
   </div>
 </template>

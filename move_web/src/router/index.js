@@ -13,6 +13,10 @@ import UserMobile from '../pages/usermobile'
 import UserMobileHome from '../components/usermobile/home'
 
 // 用户基本信息
+import Bi from '../pages/bi'
+import BiHome from '../components/bi/home'
+
+// bi报表
 import UserBasic from '../pages/userbasic'
 import UserBasicHome from '../components/userbasic/home'
 
@@ -75,6 +79,19 @@ export default new Router({
               path: 'home',
               name: 'userbasichome',
               component: UserBasicHome
+            }
+          ]
+        },
+        {
+          path: 'bi',
+          name: 'bi',
+          component: Bi,
+          redirect: '/bi/home',
+          children: [
+            {
+              path: 'home',
+              name: 'bihome',
+              component: BiHome
             }
           ]
         }
