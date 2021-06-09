@@ -161,3 +161,29 @@ class LoginOutView(APIView):
         cache.clear()
         response = {'success': 1, 'msg': '退出登陆'}
         return Response(response)
+
+class GraphView(APIView):
+    def get(self,request, *args, **kwargs):
+        login_token = cache.get('login_token', None)
+        if login_token is None:
+            response = {'success': 0, 'message':'未登陆用户','status': 401}
+            return Response(response)
+
+        tab = request.GET.get('tab')
+        logger.info('\n[GraphTab] tab:%s' % tab)
+        # 模拟数据库数据，之后修改
+        response = {'success': 1}
+        if tab=='governmentticket':
+            response ['data'] = {'mock_active_user':33333, 'mock_total_user':111111, 'mock_coupon_user':5000,
+            'mock_use_coupon_user':2222, 'mock_use_coupon_total':88888, 'mock_coupon_total':1500000}
+        elif tab=='businessticket':
+            response ['data'] = {'mock_active_user':23333, 'mock_total_user':311111, 'mock_coupon_user':4000,
+            'mock_use_coupon_user':3333, 'mock_use_coupon_total':66666, 'mock_coupon_total':1333333}
+        elif tab=='analyseticket':
+            response ['data'] = {'yAxis':['23周','24周','25周','26周'],'bus':[1.1,1.2,1.3,1.4], 
+            'gov':[1.2,1.3,1.4,1.5], 'active':[1.4,1.5,1.6,1.7],
+            'pct_data':{'mock_gov_given_coupon': 333,'mock_gov_prepared_coupon':9222,'mock_bus_given_coupon': 111,'mock_bus_prepared_coupon':6888}}
+        else:
+            response ['data'] = {'mock_gov_coupon':1111,'mock_bus_coupon':2222,'mock_site_cost':8888,'mock_bus_cost':4567,'roi':'60%'}
+        # logger.info('\n\n[GraphTab] response:%s' % response)
+        return Response(response)

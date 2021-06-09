@@ -10,15 +10,21 @@
     "build": "node build/build.js"
   },
   "dependencies": {
+    "ajv": "^6.9.1",
+    "apexcharts": "^3.27.1",
     "axios": "^0.21.1",
     "babel-polyfill": "^6.26.0",
+    "echarts": "^5.1.2",
     "element-ui": "^2.15.1",
     "es6-promise": "^4.2.8",
     "jquery": "^3.6.0",
     "vue": "^2.5.2",
+    "vue-apexcharts": "^1.6.1",
+    "vue-echarts": "^6.0.0-rc.5",
     "vue-router": "^3.0.1"
   },
   "devDependencies": {
+    "@vue/composition-api": "^1.0.0-rc.11",
     "autoprefixer": "^7.1.2",
     "babel-core": "^6.22.1",
     "babel-helper-vue-jsx-merge-props": "^2.0.3",

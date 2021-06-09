@@ -10,6 +10,7 @@ urlpatterns = [
     url(r'^basicdownload/$', DownloadBasicUser.as_view()),
     url(r'^totalpagenum/$', TotalPageNum.as_view()),
     url(r'^login$', LoginView.as_view()),
-    url(r'^loginout$', LoginOutView.as_view())
+    url(r'^loginout$', LoginOutView.as_view()),
+    url(r'^graph$', GraphView.as_view()),
 ]
 

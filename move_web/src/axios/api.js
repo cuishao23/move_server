@@ -71,3 +71,7 @@ export const postLoginInfo = params => {
 export const postLoginOutInfo = params => {
   return axios.post('/move/loginout', params).then(res => res.data)
 };
+// 图表
+export const getGraphInfo = params => {
+  return axios.get('/move/graph', params).then(res => res.data)
+};
