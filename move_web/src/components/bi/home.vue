@@ -1,10 +1,82 @@
 <template>
   <div>
     <el-tabs v-model="tabType">
-      <el-tab-pane label="政府福利券" name="governmentticket" class="ticket_tab"></el-tab-pane>
-      <el-tab-pane label="商业福利券" name="businessticket" class="ticket_tab"></el-tab-pane>
-      <el-tab-pane label="发券评估" name="analyseticket" class="ticket_tab"></el-tab-pane>
-      <el-tab-pane label="ROI" name="roi" class="ticket_tab"></el-tab-pane>
+      <el-tab-pane label="政府福利券" name="governmentticket" class="ticket_tab">
+        <!-- <el-row :gutter="20">
+          <el-col :span="6">
+            <div class="grid-content bg-purple">
+              <v-chart class="chart" :option="pie1_option" key="pie1" />
+            </div>
+          </el-col>
+          <el-col :span="6">
+            <div class="grid-content bg-purple">
+              <v-chart class="chart" :option="pie2_option" key="pie2" />
+            </div>
+          </el-col>
+          <el-col :span="6">
+            <div class="grid-content bg-purple">
+              <v-chart class="chart" :option="pie3_option" key="pie3" />
+            </div>
+          </el-col>
+          <el-col :span="6">
+            <div class="grid-content bg-purple">
+              <v-chart class="chart" :option="pie4_option" key="pie4" />
+            </div>
+          </el-col>
+        </el-row> -->
+      </el-tab-pane>
+      <el-tab-pane label="商业福利券" name="businessticket" class="ticket_tab">
+        <!-- <el-row :gutter="20">
+          <el-col :span="6">
+            <div class="grid-content bg-purple">
+              <v-chart class="chart" :option="pie5_option" key="pie5" />
+            </div>
+          </el-col>
+          <el-col :span="6">
+            <div class="grid-content bg-purple">
+              <v-chart class="chart" :option="pie6_option" key="pie6" />
+            </div>
+          </el-col>
+          <el-col :span="6">
+            <div class="grid-content bg-purple">
+              <v-chart class="chart" :option="pie7_option" key="pie7" />
+            </div>
+          </el-col>
+          <el-col :span="6">
+            <div class="grid-content bg-purple">
+              <v-chart class="chart" :option="pie8_option" key="pie8" />
+            </div>
+          </el-col>
+        </el-row> -->
+      </el-tab-pane>
+      <el-tab-pane label="发券评估" name="analyseticket" class="ticket_tab">
+        <!-- <el-row :gutter="20">
+          <el-col :span="12">
+            <div class="grid-content bg-purple">
+              <v-chart class="chart" :option="column_option" key="column" />
+            </div>
+          </el-col>
+          <el-col :span="6">
+            <div class="grid-content bg-purple">
+              <v-chart class="chart" :option="pie9_option" key="pie9" />
+            </div>
+          </el-col>
+          <el-col :span="6">
+            <div class="grid-content bg-purple">
+              <v-chart class="chart" :option="pie10_option" key="pie10" />
+            </div>
+          </el-col>
+        </el-row> -->
+      </el-tab-pane>
+      <el-tab-pane label="ROI" name="roi" class="ticket_tab">
+        <!-- <el-row :gutter="20">
+          <el-col>
+            <div class="grid-content bg-purple">
+              <v-chart class="chart" :option="roi_option" key="roi" />
+            </div>
+          </el-col>
+        </el-row> -->
+      </el-tab-pane>
     </el-tabs>
 
     <!-- governmentticket charts -->
@@ -82,37 +154,20 @@
         </div>
       </el-col>
     </el-row>
+
   </div>
 </template>
 
 
 <script>
 import api from "../../axios";
-
-import "echarts";
-
-import { use } from "echarts/core";
-import { CanvasRenderer } from "echarts/renderers";
-import { PieChart } from "echarts/charts";
-import {
-  TitleComponent,
-  TooltipComponent,
-  LegendComponent,
-} from "echarts/components";
 import VChart, { THEME_KEY } from "vue-echarts";
 
-// use([
-//   CanvasRenderer,
-//   PieChart,
-//   TitleComponent,
-//   TooltipComponent,
-//   LegendComponent,
-// ]);
 
 export default {
   components: { VChart },
   provide: {
-    [THEME_KEY]: "dark",
+    [THEME_KEY]: "red",
   },
   name: "bihome",
   data() {
